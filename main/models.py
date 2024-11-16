@@ -7,7 +7,7 @@ class Categories(models.Model):
 
     class Meta:
         ordering = ['name']
-        indexes = models.Index(fields=['slug'])
+        indexes = [models.Index(fields=['slug'])]
 
     def __str__(self):
         return self.name
@@ -28,7 +28,8 @@ class Celestial(models.Model):
 
     class Meta:
         ordering = ['name']
-        indexes = models.Index(fields=['slug'])
+        indexes = [models.Index(fields=['id', 'slug']), 
+                   models.Index(fields=['name'])]
 
     def __str__(self):
         return self.name

@@ -4,7 +4,7 @@ from .models import Celestial, Categories
 # Create your views here.
 def index(request):
     celestial = Celestial.objects.filter(available=True)
-    return render(request, 'main/index.html', {'objects': celestial})
+    return render(request, 'main/index.html', {'celestial': celestial})
 
 def celestial_list(request, category_slug=None):
     category = None
@@ -17,6 +17,6 @@ def celestial_list(request, category_slug=None):
                                                    'categories': categories,
                                                    'celestial': celestial})
 
-def detail_slug(request, celestial_slug):
+def detail(request, celestial_slug):
     celesta = get_object_or_404(Celestial, slug=celestial_slug)
     return render(request, 'main/detail.html', {'celesta': celesta})
