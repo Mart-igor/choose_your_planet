@@ -8,28 +8,32 @@
     <link rel="stylesheet" href="{% static 'bootstrap\css\bootstrap.min.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="shortcut icon" href="{% static 'img/ico.ico' %}" type="image/x-icon">
 </head>
 <body>
     <header class="header sticky-top">
         <div class="header-container d-flex">
-            <nav class='header-nav'>
-                <ul class="header-lis">
-                    <li><a href="{% url 'main:home' %}" class="header-logo"><img src="{% static 'img/logo.jpg' %}" class="header-logo-img" alt="logo"></a></li>
+            <nav class='header-nav pt-3'>
+                <ul class="header-lis d-flex">
+                    <li><a href="{% url 'main:home' %}" class="header-logo"><img src="{% static 'img/logo.png' %}" class="header-logo-img" alt="logo"></a></li>
                     <li>
-                        <a href="#" class="nav-a">Home</a>
+                        <a href="#" class="nav-a m-3">Home</a>
                     </li>
                     <li>
-                        <a href="#" class="nav-a">Shop</a>
+                        <a href="#" class="nav-a m-3">Shop</a>
                     </li>
                 </ul>
             </nav>
+            <div class="header-logo">
+                <img src="{% static 'img/planets_v2.jpg' %}" class="bottom-img" alt="--">
+            </div>
             <div class="header-profile d-flex">
-                <div class="header-top-phone">
-                    <i class="fa-solid fa-mobile-screen-button"></i>
-                    <a href="tel:+1234567890">+123-456-78-90</a>
+                <div class="header-top-phone d-flex">
+                    <i class="fa-solid fa-mobile-screen-button m-1"></i>
+                    <a href="tel:+1234567890"><p>+123-456-78-90</p></a>
                 </div>
-                <div class="header-top-icons d-flex">
-                    <ul class="social-icons">
+                <div class="header-top-icons">
+                    <ul class="social-icons d-flex">
                         <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
                         <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
                         <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
@@ -45,14 +49,19 @@
                         </ul>
                       </div>
                 </div>
-                <a href="#" class="cart"><img src="{% static 'img/cart_v2.png' %}" class="cart-img" alt="cart"></a>
-                {% if user.is_authenticated %}
-                    <a href="#" class="profile">Profile</a>
-                    <p> | </p>
-                    <a href="#" class="logout">Logout</a>
-                {% else %}
-                    <a href="#" class="profile">Login</a>
-                {% endif %}
+                <div>
+                    <a href="#" class="cart"><img src="{% static 'img/cart_v2.png' %}" class="cart-img" alt="cart"></a>
+                    {% if user.is_authenticated %}
+                        <a href="#" class="profile">Profile</a>
+                        <p> | </p>
+                        <a href="#" class="logout">Logout</a>
+                    {% else %}
+                        <a href="#" class="profile">Login</a>
+                    {% endif %}
+
+
+                </div>
+                
             </div>
         </div>
     </header>
