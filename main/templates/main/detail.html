@@ -1,2 +1,17 @@
 {% extends "main/base.html" %}
 {% load static %}
+
+{% block title %}{{detail_slug}}{% endblock title %}
+
+{% block content %}
+    <div class="detail d-flex">
+        <div class="detail-img">
+            <img src="{% static 'css/style.css' %}" alt="">
+        </div>
+        <div class="detail-cart">
+            <h3>{{celesta.name}}</h3>
+            <p>{{celesta.detail|linebreaks}}</p>
+            
+        </div>
+    </div>
+{% endblock content %}

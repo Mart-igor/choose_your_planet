@@ -1,2 +1,70 @@
 {% extends "main/base.html" %}
 {% load static %}
+
+
+{% block title %}
+Galaxy shop
+{% endblock title %}
+
+{% block content %}
+    <div class="both">
+        <div class="left">
+            <nav class="category_list">
+                <ul class="all_cat">
+                    <li>
+                        <a href="{% url 'main:category_list' %}" class="all_cat_list">All category</a>
+                    </li>
+                    {% for category in categories %}
+                        {% if celestial.category %}
+                            <li>
+                                <a href="{% url 'main:category_list' category_slug %}" class="{% if category == category_slug%}curent_cat{% else %}not_curent_cat{% endif %}">{{category}}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </nav>
+        </div>
+        <div class="right">
+            <div class="rigth-title">
+                <h2>Shop</h2>
+            </div>
+            <div class="cards">
+                {% if not category_slug %}
+                    {% for cel in celestial %}
+                        <div class="card-all">
+                            <a href="{% url "main:detail" detail_slug %}" class="cart-img"><img src="#" class="cart-img-t" alt=""></a>
+                            <a href="{% url "main:detail" detail_slug %}" class="cart-name">{{cel.name}}</a>
+                            <p>{{cel.description}}</p>
+                            {% if cel.discount %}
+                                <p class="cart-discount">{{cel.price}}</p>
+                                <p class="cel-discount">{{cel.discount}}</p>
+                            {% else %}
+                                <p class="cart-fiction">{{cel.price}}</p>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    {% for cel in celestial.objects.filter(slug==category_slug) %}
+                        <div class="card-all">
+                            <a href="#" class="cart-img"><img src="#" class="cart-img-t" alt=""></a>
+                            <a href="#" class="cart-name">{{cel.name}}</a>
+                            <p>{{cel.description}}</p>
+                            {% if cel.discount %}
+                                <p class="cart-discount">{{cel.price}}</p>
+                                <p class="cel-discount">{{cel.discount}}</p>
+                            {% else %}
+                                <p class="cart-fiction">{{cel.price}}</p>
+                            {% endif %}
+                        </div>          
+                    {% endfor %}
+                {% endif %}
+                <form action="cart_add">
+                    <input type="text">
+                    <button type="submit">Add</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    
+{% endblock content %}
